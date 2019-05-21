@@ -5,7 +5,7 @@ CLI. Using the MERN stack to and passport to secure routes with Google oAuth2.0 
 ability to mark expenses as "paid". 
 
 ![screenshot](https://i.ibb.co/WtmGdX6/Screen-Shot-2019-05-21-at-1-11-35-AM.png)
-<----------------------------------------------------------------->
+
 ![screenshot](https://i.ibb.co/d4jtF8L/Screen-Shot-2019-05-21-at-1-13-06-AM.png)
 
 ## Getting Started
