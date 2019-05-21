@@ -5,12 +5,12 @@ CLI. Using the MERN stack to and passport to secure routes with Google oAuth2.0 
 ability to mark expenses as "paid". 
 
 ## Getting Started
-**application require google client code via google developer console
+**application require google client ID via google developer console
 
 To get started -
 1. clone to repo
 2. `yarn install`
-3. please set the following enviorment variables - via .env
+3. please set the following enviorment variables - via .env (dotenv)
   ( MONGODB_URI, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET,COOKIE_KEY, DB_USER, DB_PASSWORD )
 4. `yarn start`
 
