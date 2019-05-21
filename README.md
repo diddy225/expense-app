@@ -4,8 +4,8 @@ Very simple yet powerful web application that allows you to track your expenses 
 CLI. Using the MERN stack to and passport to secure routes with Google oAuth2.0 login. The app features a date range and the
 ability to mark expenses as "paid". 
 
-![screenshot](https://ibb.co/pyYbsTx)
-![screenshot](https://ibb.co/VYJxRfQ)
+![screenshot](https://i.ibb.co/WtmGdX6/Screen-Shot-2019-05-21-at-1-11-35-AM.png)
+![screenshot](https://i.ibb.co/d4jtF8L/Screen-Shot-2019-05-21-at-1-13-06-AM.png)
 
 ## Getting Started
 **application require google client ID via google developer console
