@@ -1,8 +1,15 @@
 import React from 'react'
+import _ from 'lodash'
 import { Table, Button, Label } from 'semantic-ui-react'
 
+const filterData = (start, end, array) => {
+  return (
+    _.filter(array, (o) => o.due >= new Date(start).toISOString() && o.due <= new Date(end).toISOString())
+  )
+}
 const ExpenseTable = (props) => {
-  const tableRow = props.expenses.map((ele) => {
+  const filtered = filterData(props.startDate, props.endDate, props.expenses)
+  const tableData = filtered.map((ele) => {
     return (
         <Table.Row key={ele._id}>
           <Table.Cell>
@@ -10,7 +17,7 @@ const ExpenseTable = (props) => {
             {ele.business}
           </Table.Cell>
           <Table.Cell>${ele.amount}</Table.Cell>
-          <Table.Cell>{ele.due}</Table.Cell>
+          <Table.Cell>{new Date(ele.due).toDateString()}</Table.Cell>
           <Table.Cell width={4} textAlign={"center"}>
             <Button onClick={() => {props.paid(ele._id); props.refresh();}} color="green">Mark Paid</Button>
             <Button onClick={() => {props.delete(ele._id); props.refresh();}} color="red">DELETE</Button>
@@ -29,7 +36,7 @@ const ExpenseTable = (props) => {
       </Table.Row>
     </Table.Header>
     <Table.Body>
-      {tableRow}
+      {tableData}
     </Table.Body>
   </Table>
   )

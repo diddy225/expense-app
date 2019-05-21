@@ -32,7 +32,7 @@ class ModalModalExample extends Component {
     let data = {
       business,
       amount,
-      due: due.toDateString()
+      due: due.toISOString()
     }
     if(business && amount) {
       axios.post('/api/crud/add', data)
