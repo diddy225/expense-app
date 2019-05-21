@@ -27,6 +27,9 @@ const router = express.Router()
       .then(function (data) {
         res.json(data);
       })
+      .then( (err) => {
+        console.log(err)
+      })
     } else {
       res.send('PLEASE LOGIN')
     }
