@@ -10,7 +10,7 @@ const router = express.Router()
         res.json(data);
       })
     } else {
-      res.send('Please login')
+      res.send('PLEASE LOGIN')
     }
   })
 
@@ -28,7 +28,7 @@ const router = express.Router()
         res.json(data);
       })
     } else {
-      res.send('please login')
+      res.send('PLEASE LOGIN')
     }
   });
 
@@ -38,14 +38,16 @@ const router = express.Router()
         {"googleID": req.user.googleID, "expenses._id": ObjectId(req.params.id)},
         {"$set": {"expenses.$.paid": true}},
         function(err, user){
-          console.log(user)
+          if(err) {
+            console.log(err)
+          }
         }
       )
       .then(function(response) {
         res.json(response)
       })
     } else {
-      res.send('please login')
+      res.send('PLEASE LOGIN')
     }
   })
 
@@ -63,7 +65,7 @@ const router = express.Router()
         }
       )
     } else {
-      res.send('please login')
+      res.send('PLEASE LOGIN')
     }
   })
 

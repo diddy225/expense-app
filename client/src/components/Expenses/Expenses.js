@@ -1,64 +1,47 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
+import ExpenseTable from './ExpenseTable'
+import Modal from './ExpenseModal'
 import axios from 'axios'
 
-export default class Expenses extends Component {
-  state = {
-    expenses: {},
-    authenticated: false
-  }
+class Expenses extends Component {
+  state = {expenses: []}
 
   componentDidMount() {
-    fetch("/api/crud/expenses", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true
-      }
-    })
-      .then(response => {
-        if (response.status === 200) return response.json();
-        throw new Error("failed to authenticate user");
-      })
-      .then(responseJson => {
-        this.setState({
-          authenticated: true,
-          expenses: responseJson[0].expenses
-        });
-      })
-      .catch(error => {
-        this.setState({
-          authenticated: false,
-          error: "Failed to authenticate user"
-        });
-      });
+    axios.get('/api/crud/expenses')
+    .then( (response) => this.setState({expenses: response.data[0].expenses}))
   }
 
-  addExpense =  () => {
-    const expense = { 
-      business: "ATT", 
-      amount: 200, 
-      due: 333
-    }
-    axios.post('/api/crud/add', expense)
+  handleDelete(id) {
+    axios.put(`/api/crud/delete/${id}`)
   }
 
+  handlePaid = (id) => {
+    axios.put(`/api/crud/update/${id}`)
+  }
+
+  refreshList =  () => {
+    axios.get('/api/crud/expenses')
+    .then( (response) => this.setState({expenses: response.data[0].expenses}))
+  }
+  
   render() {
-    const { authenticated, expenses } = this.state;
+    const { authed } = this.props
     return (
       <div>
-        {!authenticated ? <div>Please Login</div> 
+        <Modal refresh={this.refreshList}/>
+        {new Date().toDateString()}
+        {!authed ? <div>Loading...</div> 
         : 
-        <div>
-        <Button onClick={this.addExpense}>ADD EXPENSE</Button>
-        <ul>
-        {authenticated ? expenses.map((ele, i) => <li key={i}>{ele.business} {ele.amount} {ele.due}</li>) : null}
-        </ul>
-        </div>
+        <ExpenseTable 
+          paid={this.handlePaid}
+          refresh={this.refreshList}
+          expenses={this.state.expenses}
+          delete={this.handleDelete}
+        /> 
         }
       </div>
     )
   }
 }
+
+export default Expenses

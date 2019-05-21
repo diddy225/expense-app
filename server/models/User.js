@@ -9,7 +9,7 @@ const userSchema = new Schema({
   expenses: [{
     business: String,
     amount: Number,
-    due: Number,
+    due: String,
     entry: {type: Date, default: Date.now},
     paid: {type: Boolean,default: false}
   }]
