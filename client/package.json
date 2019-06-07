@@ -5,8 +5,8 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "*",
-    "react": "*",
     "lodash": "^4.17.11",
+    "react": "*",
     "react-datepicker": "^2.5.0",
     "react-dom": "*",
     "react-redux": "^7.0.3",
